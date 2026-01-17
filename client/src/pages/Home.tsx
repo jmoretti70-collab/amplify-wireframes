@@ -2,7 +2,7 @@
  * Home Page - Amplify Wireframes
  * Design: Gradiente Amplify (laranja-rosa), navegação por tabs, splash screen animado
  * Autor: João Moretti
- * Versão: 3.0 - Inclui Integrações, Relatórios White-Label e Aprovação de Conteúdo
+ * Versão: 4.0 - Inclui Notificações, Programa de Afiliados e Social Listening
  */
 
 import { useState, useCallback } from "react";
@@ -16,8 +16,11 @@ import Financial from "@/components/wireframes/Financial";
 import Integrations from "@/components/wireframes/Integrations";
 import WhiteLabelReports from "@/components/wireframes/WhiteLabelReports";
 import ContentApproval from "@/components/wireframes/ContentApproval";
+import Notifications from "@/components/wireframes/Notifications";
+import AffiliateProgram from "@/components/wireframes/AffiliateProgram";
+import SocialListening from "@/components/wireframes/SocialListening";
 
-type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval";
+type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval" | "notifications" | "affiliates" | "listening";
 
 interface Tab {
   id: TabType;
@@ -34,6 +37,9 @@ const tabs: Tab[] = [
   { id: "integrations", label: "Integrações", icon: "fa-plug" },
   { id: "reports", label: "Relatórios", icon: "fa-file-alt" },
   { id: "approval", label: "Aprovação", icon: "fa-check-circle" },
+  { id: "notifications", label: "Notificações", icon: "fa-bell" },
+  { id: "affiliates", label: "Afiliados", icon: "fa-link" },
+  { id: "listening", label: "Social Listening", icon: "fa-headphones" },
 ];
 
 export default function Home() {
@@ -62,6 +68,12 @@ export default function Home() {
         return <WhiteLabelReports />;
       case "approval":
         return <ContentApproval />;
+      case "notifications":
+        return <Notifications />;
+      case "affiliates":
+        return <AffiliateProgram />;
+      case "listening":
+        return <SocialListening />;
       default:
         return <WebDashboard />;
     }
@@ -87,6 +99,7 @@ export default function Home() {
           <div className="text-right">
             <p className="text-orange-100 text-sm">Projeto por</p>
             <p className="font-semibold">João Moretti</p>
+            <p className="text-orange-200 text-xs mt-1">Versão 4.0</p>
           </div>
         </div>
       </header>
@@ -139,8 +152,8 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Módulos do Sistema</h4>
-              <ul className="text-gray-400 text-sm space-y-2">
+              <h4 className="font-semibold mb-4">Módulos do Sistema (11)</h4>
+              <ul className="text-gray-400 text-sm space-y-1">
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Dashboard da Agência</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Portal do Influenciador (PWA)</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Analytics e Relatórios</li>
@@ -149,15 +162,27 @@ export default function Home() {
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Integrações (APIs)</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Relatórios White-Label</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Aprovação de Conteúdo</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Central de Notificações</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Programa de Afiliados</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Social Listening</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Informações do Projeto</h4>
               <ul className="text-gray-400 text-sm space-y-2">
                 <li><strong>Autor:</strong> João Moretti</li>
-                <li><strong>Versão:</strong> 3.0</li>
+                <li><strong>Versão:</strong> 4.0</li>
                 <li><strong>Data:</strong> {new Date().toLocaleDateString('pt-BR')}</li>
+                <li><strong>Total de Telas:</strong> 45+</li>
               </ul>
+              <div className="mt-4 p-3 bg-gray-700 rounded-lg">
+                <p className="text-xs text-gray-300">
+                  <strong className="text-orange-400">Novidades v4.0:</strong><br/>
+                  • Central de Notificações (Push, Email, SMS)<br/>
+                  • Programa de Afiliados completo<br/>
+                  • Social Listening em tempo real
+                </p>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
