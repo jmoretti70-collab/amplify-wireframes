@@ -2,6 +2,7 @@
  * Home Page - Amplify Wireframes
  * Design: Gradiente Amplify (laranja-rosa), navegação por tabs, splash screen animado
  * Autor: João Moretti
+ * Versão: 3.0 - Inclui Integrações, Relatórios White-Label e Aprovação de Conteúdo
  */
 
 import { useState, useCallback } from "react";
@@ -12,8 +13,11 @@ import MobilePWA from "@/components/wireframes/MobilePWA";
 import Analytics from "@/components/wireframes/Analytics";
 import Onboarding from "@/components/wireframes/Onboarding";
 import Financial from "@/components/wireframes/Financial";
+import Integrations from "@/components/wireframes/Integrations";
+import WhiteLabelReports from "@/components/wireframes/WhiteLabelReports";
+import ContentApproval from "@/components/wireframes/ContentApproval";
 
-type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial";
+type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval";
 
 interface Tab {
   id: TabType;
@@ -27,6 +31,9 @@ const tabs: Tab[] = [
   { id: "analytics", label: "Analytics", icon: "fa-chart-bar" },
   { id: "onboarding", label: "Onboarding", icon: "fa-user-plus" },
   { id: "financial", label: "Financeiro", icon: "fa-wallet" },
+  { id: "integrations", label: "Integrações", icon: "fa-plug" },
+  { id: "reports", label: "Relatórios", icon: "fa-file-alt" },
+  { id: "approval", label: "Aprovação", icon: "fa-check-circle" },
 ];
 
 export default function Home() {
@@ -49,6 +56,12 @@ export default function Home() {
         return <Onboarding />;
       case "financial":
         return <Financial />;
+      case "integrations":
+        return <Integrations />;
+      case "reports":
+        return <WhiteLabelReports />;
+      case "approval":
+        return <ContentApproval />;
       default:
         return <WebDashboard />;
     }
@@ -81,19 +94,16 @@ export default function Home() {
       {/* Navigation Tabs */}
       <nav className="bg-white shadow-sm sticky top-0 z-40">
         <div className="container mx-auto px-4">
-          <div className="flex space-x-2 overflow-x-auto">
+          <div className="flex space-x-1 overflow-x-auto py-1">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-4 font-medium transition-colors whitespace-nowrap flex items-center ${
+                className={`py-3 px-3 font-medium transition-colors whitespace-nowrap flex items-center text-sm rounded-lg ${
                   activeTab === tab.id
-                    ? "text-orange-500"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "text-white bg-gradient-to-r from-orange-500 to-pink-500"
+                    : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                 }`}
-                style={{ 
-                  borderBottom: activeTab === tab.id ? "3px solid #f97316" : "3px solid transparent" 
-                }}
               >
                 <i className={`fas ${tab.icon} mr-2`}></i>
                 {tab.label}
@@ -136,13 +146,16 @@ export default function Home() {
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Analytics e Relatórios</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Onboarding de Usuários</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Módulo Financeiro</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Integrações (APIs)</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Relatórios White-Label</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Aprovação de Conteúdo</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Informações do Projeto</h4>
               <ul className="text-gray-400 text-sm space-y-2">
                 <li><strong>Autor:</strong> João Moretti</li>
-                <li><strong>Versão:</strong> 2.0</li>
+                <li><strong>Versão:</strong> 3.0</li>
                 <li><strong>Data:</strong> {new Date().toLocaleDateString('pt-BR')}</li>
               </ul>
             </div>
