@@ -2,7 +2,7 @@
  * Home Page - Amplify Wireframes
  * Design: Gradiente Amplify (laranja-rosa), navegação por tabs, splash screen animado
  * Autor: João Moretti
- * Versão: 4.0 - Inclui Notificações, Programa de Afiliados e Social Listening
+ * Versão: 5.0 - Inclui Seeding de Produtos, IA Preditiva e Amplify Academy
  */
 
 import { useState, useCallback } from "react";
@@ -19,13 +19,17 @@ import ContentApproval from "@/components/wireframes/ContentApproval";
 import Notifications from "@/components/wireframes/Notifications";
 import AffiliateProgram from "@/components/wireframes/AffiliateProgram";
 import SocialListening from "@/components/wireframes/SocialListening";
+import ProductSeeding from "@/components/wireframes/ProductSeeding";
+import AIPredictive from "@/components/wireframes/AIPredictive";
+import AmplifyAcademy from "@/components/wireframes/AmplifyAcademy";
 
-type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval" | "notifications" | "affiliates" | "listening";
+type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval" | "notifications" | "affiliates" | "listening" | "seeding" | "ai" | "academy";
 
 interface Tab {
   id: TabType;
   label: string;
   icon: string;
+  isNew?: boolean;
 }
 
 const tabs: Tab[] = [
@@ -40,6 +44,9 @@ const tabs: Tab[] = [
   { id: "notifications", label: "Notificações", icon: "fa-bell" },
   { id: "affiliates", label: "Afiliados", icon: "fa-link" },
   { id: "listening", label: "Social Listening", icon: "fa-headphones" },
+  { id: "seeding", label: "Seeding", icon: "fa-box", isNew: true },
+  { id: "ai", label: "IA Preditiva", icon: "fa-brain", isNew: true },
+  { id: "academy", label: "Academy", icon: "fa-graduation-cap", isNew: true },
 ];
 
 export default function Home() {
@@ -74,6 +81,12 @@ export default function Home() {
         return <AffiliateProgram />;
       case "listening":
         return <SocialListening />;
+      case "seeding":
+        return <ProductSeeding />;
+      case "ai":
+        return <AIPredictive />;
+      case "academy":
+        return <AmplifyAcademy />;
       default:
         return <WebDashboard />;
     }
@@ -99,7 +112,7 @@ export default function Home() {
           <div className="text-right">
             <p className="text-orange-100 text-sm">Projeto por</p>
             <p className="font-semibold">João Moretti</p>
-            <p className="text-orange-200 text-xs mt-1">Versão 4.0</p>
+            <p className="text-orange-200 text-xs mt-1">Versão 5.0</p>
           </div>
         </div>
       </header>
@@ -112,7 +125,7 @@ export default function Home() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-3 px-3 font-medium transition-colors whitespace-nowrap flex items-center text-sm rounded-lg ${
+                className={`py-3 px-3 font-medium transition-colors whitespace-nowrap flex items-center text-sm rounded-lg relative ${
                   activeTab === tab.id
                     ? "text-white bg-gradient-to-r from-orange-500 to-pink-500"
                     : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
@@ -120,6 +133,11 @@ export default function Home() {
               >
                 <i className={`fas ${tab.icon} mr-2`}></i>
                 {tab.label}
+                {tab.isNew && (
+                  <span className="ml-1 px-1.5 py-0.5 text-[10px] bg-green-500 text-white rounded-full font-bold">
+                    NEW
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -152,7 +170,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Módulos do Sistema (11)</h4>
+              <h4 className="font-semibold mb-4">Módulos do Sistema (14)</h4>
               <ul className="text-gray-400 text-sm space-y-1">
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Dashboard da Agência</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Portal do Influenciador (PWA)</li>
@@ -162,25 +180,28 @@ export default function Home() {
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Integrações (APIs)</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Relatórios White-Label</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Aprovação de Conteúdo</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Central de Notificações</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Programa de Afiliados</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Social Listening</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Central de Notificações</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Programa de Afiliados</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Social Listening</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Seeding de Produtos</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>IA para Descoberta Preditiva</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Amplify Academy</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Informações do Projeto</h4>
               <ul className="text-gray-400 text-sm space-y-2">
                 <li><strong>Autor:</strong> João Moretti</li>
-                <li><strong>Versão:</strong> 4.0</li>
+                <li><strong>Versão:</strong> 5.0</li>
                 <li><strong>Data:</strong> {new Date().toLocaleDateString('pt-BR')}</li>
-                <li><strong>Total de Telas:</strong> 45+</li>
+                <li><strong>Total de Telas:</strong> 55+</li>
               </ul>
               <div className="mt-4 p-3 bg-gray-700 rounded-lg">
                 <p className="text-xs text-gray-300">
-                  <strong className="text-orange-400">Novidades v4.0:</strong><br/>
-                  • Central de Notificações (Push, Email, SMS)<br/>
-                  • Programa de Afiliados completo<br/>
-                  • Social Listening em tempo real
+                  <strong className="text-green-400">Novidades v5.0:</strong><br/>
+                  • Seeding de Produtos com tracking<br/>
+                  • IA para Descoberta Preditiva<br/>
+                  • Amplify Academy (cursos e certificações)
                 </p>
               </div>
             </div>
