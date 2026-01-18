@@ -2,7 +2,7 @@
  * Home Page - Amplify Wireframes
  * Design: Gradiente Amplify (laranja-rosa), navegação por tabs, splash screen animado
  * Autor: João Moretti
- * Versão: 6.0 - Inclui Marketplace, Chat com IA e Dashboard ROI Comparativo
+ * Versão: 7.0 - Inclui Contratos Digitais, Dashboard de Competidores e Gestão de Crises
  */
 
 import { useState, useCallback } from "react";
@@ -25,8 +25,11 @@ import AmplifyAcademy from "@/components/wireframes/AmplifyAcademy";
 import Marketplace from "@/components/wireframes/Marketplace";
 import ChatAI from "@/components/wireframes/ChatAI";
 import ROIComparative from "@/components/wireframes/ROIComparative";
+import DigitalContracts from "@/components/wireframes/DigitalContracts";
+import CompetitorDashboard from "@/components/wireframes/CompetitorDashboard";
+import CrisisManagement from "@/components/wireframes/CrisisManagement";
 
-type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval" | "notifications" | "affiliates" | "listening" | "seeding" | "ai" | "academy" | "marketplace" | "chatai" | "roi";
+type TabType = "web" | "mobile" | "analytics" | "onboarding" | "financial" | "integrations" | "reports" | "approval" | "notifications" | "affiliates" | "listening" | "seeding" | "ai" | "academy" | "marketplace" | "chatai" | "roi" | "contracts" | "competitors" | "crisis";
 
 interface Tab {
   id: TabType;
@@ -50,9 +53,12 @@ const tabs: Tab[] = [
   { id: "seeding", label: "Seeding", icon: "fa-box" },
   { id: "ai", label: "IA Preditiva", icon: "fa-brain" },
   { id: "academy", label: "Academy", icon: "fa-graduation-cap" },
-  { id: "marketplace", label: "Marketplace", icon: "fa-store", isNew: true },
-  { id: "chatai", label: "Chat IA", icon: "fa-robot", isNew: true },
-  { id: "roi", label: "ROI Comparativo", icon: "fa-chart-line", isNew: true },
+  { id: "marketplace", label: "Marketplace", icon: "fa-store" },
+  { id: "chatai", label: "Chat IA", icon: "fa-robot" },
+  { id: "roi", label: "ROI Comparativo", icon: "fa-chart-line" },
+  { id: "contracts", label: "Contratos", icon: "fa-file-signature", isNew: true },
+  { id: "competitors", label: "Competidores", icon: "fa-users", isNew: true },
+  { id: "crisis", label: "Gestão de Crises", icon: "fa-exclamation-triangle", isNew: true },
 ];
 
 export default function Home() {
@@ -99,6 +105,12 @@ export default function Home() {
         return <ChatAI />;
       case "roi":
         return <ROIComparative />;
+      case "contracts":
+        return <DigitalContracts />;
+      case "competitors":
+        return <CompetitorDashboard />;
+      case "crisis":
+        return <CrisisManagement />;
       default:
         return <WebDashboard />;
     }
@@ -124,7 +136,7 @@ export default function Home() {
           <div className="text-right">
             <p className="text-orange-100 text-sm">Projeto por</p>
             <p className="font-semibold">João Moretti</p>
-            <p className="text-orange-200 text-xs mt-1">Versão 6.0</p>
+            <p className="text-orange-200 text-xs mt-1">Versão 7.0</p>
           </div>
         </div>
       </header>
@@ -182,7 +194,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Módulos do Sistema (17)</h4>
+              <h4 className="font-semibold mb-4">Módulos do Sistema (20)</h4>
               <ul className="text-gray-400 text-sm space-y-1">
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Dashboard da Agência</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Portal do Influenciador (PWA)</li>
@@ -198,25 +210,28 @@ export default function Home() {
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Seeding de Produtos</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>IA para Descoberta Preditiva</li>
                 <li><i className="fas fa-check text-orange-500 mr-2"></i>Amplify Academy</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Marketplace de Oportunidades</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Chat com IA (Amplify Assistant)</li>
-                <li><i className="fas fa-check text-green-500 mr-2"></i>Dashboard ROI Comparativo</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Marketplace de Oportunidades</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Chat com IA (Amplify Assistant)</li>
+                <li><i className="fas fa-check text-orange-500 mr-2"></i>Dashboard ROI Comparativo</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Contratos Digitais</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Dashboard de Competidores</li>
+                <li><i className="fas fa-check text-green-500 mr-2"></i>Gestão de Crises</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Informações do Projeto</h4>
               <ul className="text-gray-400 text-sm space-y-2">
                 <li><strong>Autor:</strong> João Moretti</li>
-                <li><strong>Versão:</strong> 6.0</li>
+                <li><strong>Versão:</strong> 7.0</li>
                 <li><strong>Data:</strong> {new Date().toLocaleDateString('pt-BR')}</li>
-                <li><strong>Total de Telas:</strong> 70+</li>
+                <li><strong>Total de Telas:</strong> 85+</li>
               </ul>
               <div className="mt-4 p-3 bg-gray-700 rounded-lg">
                 <p className="text-xs text-gray-300">
-                  <strong className="text-green-400">Novidades v6.0:</strong><br/>
-                  • Marketplace de Oportunidades<br/>
-                  • Chat com IA (Amplify Assistant)<br/>
-                  • Dashboard ROI Comparativo
+                  <strong className="text-green-400">Novidades v7.0:</strong><br/>
+                  • Contratos Digitais (Assinatura Eletrônica)<br/>
+                  • Dashboard de Competidores<br/>
+                  • Gestão de Crises de Reputação
                 </p>
               </div>
             </div>
