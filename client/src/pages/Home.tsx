@@ -142,23 +142,24 @@ export default function Home() {
       </header>
 
       {/* Navigation Tabs */}
-      <nav className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          <div className="flex space-x-1 overflow-x-auto py-1">
+      <nav className="bg-white shadow-md sticky top-0 z-40 border-b border-gray-200">
+        <div className="container mx-auto px-2">
+          <div className="flex flex-wrap justify-center gap-1 py-2 max-h-[120px] overflow-y-auto">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-3 px-3 font-medium transition-colors whitespace-nowrap flex items-center text-sm rounded-lg relative ${
+                className={`py-2 px-2.5 font-medium transition-all whitespace-nowrap flex items-center text-xs rounded-md relative border ${
                   activeTab === tab.id
-                    ? "text-white bg-gradient-to-r from-orange-500 to-pink-500"
-                    : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                    ? "text-white bg-gradient-to-r from-orange-500 to-pink-500 border-transparent shadow-md"
+                    : "text-gray-600 hover:text-gray-800 hover:bg-gray-50 border-gray-200 bg-white"
                 }`}
               >
-                <i className={`fas ${tab.icon} mr-2`}></i>
-                {tab.label}
+                <i className={`fas ${tab.icon} mr-1.5 text-[10px]`}></i>
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
                 {tab.isNew && (
-                  <span className="ml-1 px-1.5 py-0.5 text-[10px] bg-green-500 text-white rounded-full font-bold">
+                  <span className="ml-1 px-1 py-0.5 text-[8px] bg-green-500 text-white rounded font-bold">
                     NEW
                   </span>
                 )}
